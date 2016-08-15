@@ -17,19 +17,50 @@
 
 ## Plan
 
-### status.wikimedia.org
-### Ambassadors / announce
-### Historique + liens vers wmflabs, Atom
-### Contributions + liens vers wmflabs, Editcount, wikiscan, autres projets
-### Pages liées, suivi des pages liées, adresse permanente (oldid), informations sur la page
-### Transclusion de modèles, de pages arbitraires (suivi des pages liées)
-### Liens internes (vers une section, texte alternatif, pluriel…), liens avec « : » pour catégorie, image…, Special:Interwiki, liens externes relatifs au protocole, Special:Diff
-### Special:SpecialPages, Special:Version, Special:Statistiques
+### Oups
+* status.wikimedia.org
+* IRC ⇒ kiwi
+* Twitter ⇒ wikimediatech
+### Se tenir au courant
+* Ambassadors
+### Raccourcis clavier
+* ctrl + maj + e
+* ctrl + maj + h
+* ctrl + maj + w
+* Infobulle pour les autres raccourcis
+### Historique
+* DeluxeHistory
+* Liens vers visites
+* Liens vers modifications
+* Liens vers wikiblame, demo SNCF
+* RSS
+### Contributions
+* Liens vers wmflabs, Editcount, wikiscan, autres projets (éviter Seb)
+* RSS
+### Menu de gauche
+* Pages liées, suivi des pages liées, adresse permanente (oldid), informations sur la page
+### Transclusion
+* Modèles
+* Pages arbitraires
+* Pages spéciales (suivi des pages liées)
+### Liens
+* Section
+* Pluriel
+* Texte alternatif
+* Avec « : » pour catégorie, image…
+* Special:Interwiki
+* Liens externes relatifs au protocole
+* Special:Diff
 ### Spécial:Recherche de liens
 ### Spam-blacklist, titleblacklist, Spam-whitelist
-### Recherche, dans certains espaces de nom
 ### Indenter les discussions
 ### Répondre et mentionner des contributeurs (PdD + nb max + signature)
+### Pages spéciales
+* Divers exemples
+* Dont « Spécial:Pages spéciales »
+* ⇒ Droits de groupe
+* ⇒ Liste des utilisateurs
+### Recherche, dans certains espaces de nom
 ### Créer un compte pour un tiers
 ### Dépôt de conf de MediaWiki
 * ⇒ Nombre de comptes dispos à la création selon le groupe

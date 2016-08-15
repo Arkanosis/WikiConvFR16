@@ -10,22 +10,36 @@
 
 ## Plan
 
+### Scrapping
+* wget / curl
+* action=raw / render
+* section=
+* Special:Export
+
 ### API
-* wget / curl / httpie
+* api.php
+* api.php?format=jsonfm&action=query&titles=LZMA&prop=revisions&rvprop=content&rvsection=0
+* https://fr.wikipedia.org/wiki/Sp%C3%A9cial:ApiSandbox
+* httpie
 * jq
 * xmlstarlet
-* sparql
 * Exemple : articles créés / les plus modifiés
 * Exemple : ancienneté des administrateurs
-* Exemple : drapeaux des pays par continent
 * Exemple : détection de copyvio
-* Exemples avec graphiques ?
+* SPARQL https://query.wikidata.org/
+* Exemple : drapeaux des pays par continent
+* Exemples avec graphiques ? Cf. blogs Poulpy & Coyau
+
 ### Dump
 * wget | bunzip
 * lxml / page parser
 * Exemple : dictionnaires de synonymes / antonymes à partir du wikt (+ comparaison avec WOLF)
 * Exemple : articles sans portails / UTF-8 invalide
+
 ### Dump cyrrus search
+
+### DBPedia
+
 ### Réplicas SQL des Tool Labs
 * Pour Wikimedia uniquement
 SELECT

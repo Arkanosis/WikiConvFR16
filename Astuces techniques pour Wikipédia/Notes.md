@@ -18,6 +18,7 @@
 ## Plan
 
 ### status.wikimedia.org
+### Ambassadors / announce
 ### Historique + liens vers wmflabs, Atom
 ### Contributions + liens vers wmflabs, Editcount, wikiscan, autres projets
 ### Pages liées, suivi des pages liées, adresse permanente (oldid), informations sur la page
@@ -30,6 +31,8 @@
 ### Indenter les discussions
 ### Répondre et mentionner des contributeurs (PdD + nb max + signature)
 ### Créer un compte pour un tiers
+### Dépôt de conf de MediaWiki
+* ⇒ Nombre de comptes dispos à la création selon le groupe
 ### f5, ctrl+f5, action=purge, forcelinkupdate=1, forcerecursivelinkupdate=1, ou null edit (whatslinkhere, category)
 ### useskin=monobook
 ### uselang=qqx, messages systèmes, translatewiki

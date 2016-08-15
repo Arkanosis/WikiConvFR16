@@ -17,7 +17,12 @@
 ## Données
 * Notes
 * Mots de passe Arktest
-*
+* Notes sous forme de page Wiki avec des liens
+* Dumps de différents projets + WOLF
+* Belles images pour faire des coupures avant chaque truc un peu compliqué (de Commons, avec licence et légende) — en faire des devinettes ?
+* Slides en HTML? ⇒ liens + images
+* Slide de présentation au début : User:Arkanosis, frwiki, wikidata
+* Slide de contact à la fin : User:Arkanosis, Discussion_utilisateur, jroquet@arkanosis.net, PGP (keybase), Twitter
 
 ## Tests
 * Grossissement navigateur web et terminal

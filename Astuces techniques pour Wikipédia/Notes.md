@@ -78,6 +78,7 @@
 * ⇒ Présentation « Découverte de l'outil de traduction de contenu » du matin
 * Special:Gadgets (pour les admins)
 ### Javascript / CSS perso (vector / common / global)
+* Projet:JavaScript
 ### Tuto cacher avec CSS (copyright) et devtools Firefox
 ### API
 * ⇒ Présentation « Datamining du dimanche sur les projets Wikimedia »

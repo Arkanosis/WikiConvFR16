@@ -405,30 +405,1022 @@
 				<section>
 					<h2>Modèles</h2>
 					<p>
-						<a href="$URL"><img src="images/$IMG" style="width: 60%;"></a>
+						<a href="https://commons.wikimedia.org/wiki/File:Jigsaw_pieces_with_border.jpg"><img src="images/Jigsaw_pieces_with_border.jpg" style="width: 30%;"></a>
 						<br>
-						<small style="font-size: 40%">$AUTHOR</small>
+						<small style="font-size: 40%">© Octahedron80, CC-BY-SA 4.0</small>
 					</p>
 					<ul>
-						<li><a href="https://lists.wikimedia.org/mailman/listinfo/wikitech-ambassadors">lists.wikimedia.org/mailman/listinfo/wikitech-ambassadors</a></li>
+						<li><code>{{{1}}}</code></li>
+						<li><code>{{{param}}}</code></li>
+						<li><code>{{{param|défaut}}}</code></li>
+						<li class="fragment">Write-only! (même pour les experts)</li>
 					</ul>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
 				<section>
+					<pre style="height:80%"><code style="height:100%; max-height: 100%; font-size:70%">
+<noinclude><!--
+-=============================================================
+-  Strlen_quick - Get length of a character string quickly
+-=============================================================
+--                        (see NOTES at bottom)
+--></noinclude>{{
+#ifeq: x{{{1}}}|x{{padleft:{{{1}}}|20}}
+| {{#ifeq: x{{{1}}}|x{{padleft:{{{1}}}|30}}
+  | {{#ifeq: x{{{1}}}|x{{padleft:{{{1}}}|40}}
+    | {{#switch: x{{{1}}}
+      | {{padleft:|41|x{{{1}}}}} = 40
+      | {{padleft:|42|x{{{1}}}}} = 41
+      | {{padleft:|43|x{{{1}}}}} = 42
+      | {{padleft:|44|x{{{1}}}}} = 43
+      | {{padleft:|45|x{{{1}}}}} = 44
+      | {{padleft:|46|x{{{1}}}}} = 45
+      | {{padleft:|47|x{{{1}}}}} = 46
+      | {{padleft:|48|x{{{1}}}}} = 47
+      | {{padleft:|49|x{{{1}}}}} = 48
+      | {{padleft:|50|x{{{1}}}}} = 49
+      | {{padleft:|51|x{{{1}}}}} = 50
+      | {{padleft:|52|x{{{1}}}}} = 51
+      | {{padleft:|53|x{{{1}}}}} = 52
+      | {{padleft:|54|x{{{1}}}}} = 53
+      | {{padleft:|55|x{{{1}}}}} = 54
+      | {{padleft:|56|x{{{1}}}}} = 55
+      | {{padleft:|57|x{{{1}}}}} = 56
+      | {{padleft:|58|x{{{1}}}}} = 57
+      | {{padleft:|59|x{{{1}}}}} = 58
+      | {{padleft:|60|x{{{1}}}}} = 59
+      | {{padleft:|61|x{{{1}}}}} = 60
+      | {{padleft:|62|x{{{1}}}}} = 61
+      | {{padleft:|63|x{{{1}}}}} = 62
+      | {{padleft:|64|x{{{1}}}}} = 63
+      | {{padleft:|65|x{{{1}}}}} = 64
+      | {{padleft:|66|x{{{1}}}}} = 65
+      | {{padleft:|67|x{{{1}}}}} = 66
+      | {{padleft:|68|x{{{1}}}}} = 67
+      | {{padleft:|69|x{{{1}}}}} = 68
+      | {{padleft:|70|x{{{1}}}}} = 69
+      | {{padleft:|71|x{{{1}}}}} = 70
+      | #default= {{{extra|-1}}} <!--when > 70 -->
+      }}<!--endsw 40's++ -->
+    | {{#switch: x{{{1}}}
+      | {{padleft:|31|x{{{1}}}}} = 30
+      | {{padleft:|32|x{{{1}}}}} = 31
+      | {{padleft:|33|x{{{1}}}}} = 32
+      | {{padleft:|34|x{{{1}}}}} = 33
+      | {{padleft:|35|x{{{1}}}}} = 34
+      | {{padleft:|36|x{{{1}}}}} = 35
+      | {{padleft:|37|x{{{1}}}}} = 36
+      | {{padleft:|38|x{{{1}}}}} = 37
+      | {{padleft:|39|x{{{1}}}}} = 38
+      | #default= 39
+      }}<!--endsw 30's-->
+    }}<!--endifeq 40-->
+  | {{#switch: x{{{1}}}
+    | {{padleft:|21|x{{{1}}}}} = 20
+    | {{padleft:|22|x{{{1}}}}} = 21
+    | {{padleft:|23|x{{{1}}}}} = 22
+    | {{padleft:|24|x{{{1}}}}} = 23
+    | {{padleft:|25|x{{{1}}}}} = 24
+    | {{padleft:|26|x{{{1}}}}} = 25
+    | {{padleft:|27|x{{{1}}}}} = 26
+    | {{padleft:|28|x{{{1}}}}} = 27
+    | {{padleft:|29|x{{{1}}}}} = 28
+    | #default= 29
+    }}<!--endsw 20's-->
+  }}<!--endifeq 30-->
+| {{#ifeq: x{{{1}}}|x{{padleft:{{{1}}}|10}}
+  | {{#switch: x{{{1}}}
+    | {{padleft:|18|x{{{1}}}}} = 17
+    | {{padleft:|19|x{{{1}}}}} = 18
+    | {{padleft:|17|x{{{1}}}}} = 16
+    | {{padleft:|20|x{{{1}}}}} = 19
+    | {{padleft:|16|x{{{1}}}}} = 15
+    | {{padleft:|15|x{{{1}}}}} = 14
+    | {{padleft:|14|x{{{1}}}}} = 13
+    | {{padleft:|13|x{{{1}}}}} = 12
+    | {{padleft:|12|x{{{1}}}}} = 11
+    | #default= 10 <!--when >= 10 and none of above-->
+     }}<!--endsw 10's++ -->
+  | {{#switch: x{{{1}}}
+    | {{padleft:|10|x{{{1}}}}} = 9
+    | {{padleft:|9|x{{{1}}}}} = 8
+    | {{padleft:|8|x{{{1}}}}} = 7
+    | {{padleft:|7|x{{{1}}}}} = 6
+    | {{padleft:|6|x{{{1}}}}} = 5
+    | {{padleft:|5|x{{{1}}}}} = 4
+    | {{padleft:|4|x{{{1}}}}} = 3
+    | {{padleft:|3|x{{{1}}}}} = 2
+    | #default= 1
+    }}<!--endsw 1's-->
+  }}<!--endifeq 10-->
+}}<!--endifeq 20--><noinclude><!--
+-=============================================================
+--NOTES
+--         See talk-page: [[Template_talk:Strlen_quick]].
+--
+--    [ These comments are skipped by <noinclude> so they will
+--      be omitted & not sent in a formatted Internet page. ]
+--
+-- NOTE A1: This template counts the length of string {1} by
+--      comparing with the string truncated to 'n' long in a
+--      #switch for each set of lengths of {padleft:|n|{1} }.
+--      The first match will exit the #switch with the length
+--      number and exit the nested end-ifs. Max length is 70.
+--
+-- NOTE N2: This template was designed to use minimal levels
+--      as 5, to avoid the "expansion depth limit" when used
+--      in very large templates. By comparison, {str_len} was
+--      using over 9-13 levels of 40 total, during 2009-2011.
+--
+-- NOTE P3: To speed the results, the check for length is based
+--      on probability of an average length of 17/18, as found
+--      in Wikipedia titles, where length 5 is as rare as 31
+--      or longer. The average search is 6.5 uses of {padleft}
+--      but the weighted average for actual titles is near 4.
+--      When most strings are > 49, then use {str_len}.
+--
+-- NOTE S4: This template CANNOT be subst-substituted by using
+--      {{subst:strlen_short|...}} to save only the results, or
+--      {{{{{|safesubst:}}}strlen_short}} using blank parameter.
+--
+--------------------------------------------------------------
+--HISTORY:
+--30Jan2011 Created to get length quickly in few nest levels.
+--31Jan2011 Removed spurious newline before <noinclude>.
+--31Jan2011 Set to return {{{extra|-1}}} when > 70.
+--
+-->{{documentation}}
+
+[[Category:Templates|{{PAGENAME}}]]
+</noinclude>
+					</code></pre>
+					<small style="font-size: 40%">© Contributeurs de Template:Strlen_quick, CC-BY-SA</small>
+				</section>
+				<section>
 					<h2>Modules</h2>
 					<p>
-						<a href="$URL"><img src="images/$IMG" style="width: 60%;"></a>
+						<a href="https://commons.wikimedia.org/wiki/File:HKPIEG_Infrastructure_Gallery_exhibit_-_TST_尖沙咀_往昔建築物_Lego_model_past_May-2013_old_Tram_Terminal.JPG"><img src="images/HKPIEG_Infrastructure_Gallery_exhibit_-_TST_尖沙咀_往昔建築物_Lego_model_past_May-2013_old_Tram_Terminal.JPG" style="width: 30%;"></a>
 						<br>
-						<small style="font-size: 40%">$AUTHOR</small>
+						<small style="font-size: 40%">© Hopfare368, CC-BY-SA</small>
 					</p>
+					<pre><code>
+local p = {}
+
+function p.foo()
+    return 'Hello Lua!'
+end
+
+return p
+					</code></pre>
 					<ul>
-						<li><a href="https://lists.wikimedia.org/mailman/listinfo/wikitech-ambassadors">lists.wikimedia.org/mailman/listinfo/wikitech-ambassadors</a></li>
+						<li class="fragment">Read-write! (du moins pour les experts)</li>
 					</ul>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
+				</section>
+				<section>
+					<pre style="height:80%"><code style="height:100%; max-height: 100%; font-size:70%">
+--script that retrieves basic data stored in Wikidata, for the datamodel, see https://www.mediawiki.org/wiki/Extension:Wikibase_Client/Lua
+
+local wd = {}
+
+local modules = { }
+local modulesNames = {
+	reference = 'Module:Wikidata/Références',
+	linguistic = 'Module:Linguistique',
+	formatDate = 'Module:Date complexe',
+	formatNum = 'Module:Conversion',
+	langmodule = 'Module:Langue',
+	cite = 'Module:Biblio',
+	getData = 'Module:Wikidata/Récup',
+	entities = 'Module:Wikidata/Formatage entité',
+	tools = 'Module:Wikidata/Outils',
+	globes = 'Module:Wikidata/Globes',
+	langcodes = 'Module:Dictionnaire Wikidata/Codes langue', -- gros et rarement utilisé
+	weblink = 'Module:Weblink'
+}
+
+local function loadModule( t, key )
+	if modulesNames[key] then
+		local m = require( modulesNames[key] )
+		t[key] = m
+		return m
+	end
+end
+setmetatable( modules, { __index = loadModule } )
+
+local tools = require 'Module:Wikidata/Outils'
+local translate = tools.translate
+local defaultlang = mw.getContentLanguage():getCode()
+
+function wd.getLabel(entity, args)
+	modules.entities.getLabel(entity)
+end
+
+function wd.formatEntity(entity, args)
+	return modules.entities.formatEntity(entity, args)
+end
+
+function wd.addtrackingcat(prop, cat) -- doit parfois être appelé par d'autres modules
+	if type(prop) == 'table' then
+		prop = prop[1] -- devrait logiquement toutes les ajouter
+	end
+	if not prop and not cat then
+		return error("no property provided")
+	end
+	if not cat then
+		cat = translate('trackingcat', prop or 'P??')
+	end
+	return tools.addcat(cat )
+end
+
+local function removeblanks(args)
+	for i, j in pairs(args) do
+		if j == '' then args[i] = nil end
+	end
+	return args
+end
+
+local function unknownvalue(snak, label)
+	local str = label
+
+	if type(str) == "function" then
+		str = str(snak)
+	end
+
+	if (not str) then
+		if snak.datatype == 'time' then
+			str = translate('sometime')
+		else
+			str = translate('somevalue')
+		end
+	end
+
+	if type(str) ~= "string" then
+		return tools.formatError(snak.datatype)
+	end
+	return str
+end
+
+local function novalue(displayformat)
+	if not displayformat then
+		return translate('novalue')
+	end
+	if type(displayformat) == 'string' then
+		return displayformat
+	end
+	return tools.formatError()
+end
+
+local function getlangcode(entityid)
+	return modules.langcodes[tonumber(entityid:sub(2))]
+end
+
+local  function showlang(statement) -- retourne le code langue entre paranthèse avant la valeur (par exemple pour les biblios et liens externes)
+	local mainsnak = statement.mainsnak
+	if mainsnak.snaktype ~= 'value' then
+		return nil
+	end
+	local langlist = {}
+	if mainsnak.datavalue.type == 'monolingualtext' then
+		langlist = {mainsnak.datavalue.value.language}
+	elseif (not statement.qualifiers) or (not statement.qualifiers.P407) then
+		return
+	else
+		for i, j in pairs( statement.qualifiers.P407 ) do
+			if  j.snaktype == 'value' then
+				local langentity = tools.getId(j)
+				local langcode =  getlangcode(langentity)
+				table.insert(langlist, langcode)
+			end
+		end
+	end
+	if (#langlist > 1) or (#langlist == 1 and langlist[1] ~= defaultlang) then -- si c'est en français, pas besoin de le dire
+		return modules.langmodule.indicationMultilingue(langlist)
+	end
+end
+
+local function formattable(statements, params) -- transform a table of claims into a table of formatted values
+    for i, j in pairs(statements) do
+        j = wd.formatStatement(j, params)
+    end
+    return statements
+end
+
+function wd.tableToText(values, params) -- takes a list of already formatted values and make them a text
+    if not values then
+        return nil
+    end
+
+    return modules.linguistic.quickconj( values, params.conjtype)--modules.linguistic.conj( values, params.lang, params.conjtype )
+end
+
+
+function wd.rangeobject(begin, ending, params)
+	--[[
+		objet comportant un timestamp pour le classement chronologique et deux dateobject (begin et ending)
+	]]--
+	local timestamp
+	if begin then
+		timestamp = begin.timestamp
+	else
+		timestamp = ending.timestamp
+	end
+	return {begin = begin, ending = ending, timestamp = timestamp, type = 'rangeobject'}
+end
+
+function wd.dateobject(orig, params)
+	--[[ transforme un snak en un nouvel objet utilisable par Module:Date complexe
+		{type = 'dateobject', timestamp = str, era = '+' ou '-', year = number, month = number, day = number, calendar = calendar}
+	]]--
+	if not params then
+		params = {}
+	end
+
+	local newobj = modules.formatDate.splitDate(orig.time, orig.calendar)
+
+	newobj.precision = params.precision or orig.precision
+	newobj.type = 'dateobject'
+	return newobj
+end
+
+function wd.objecttotext(obj, params)
+	if obj.type == 'dateobject' then
+		return modules.formatDate.simplestring(obj, params)
+	elseif obj.type == 'rangeobject' then
+		return modules.formatDate.daterange(obj.begin, obj.ending, params)
+	end
+end
+
+local function getDatefromQualif(statement, qualif)
+	if (not statement) or (not statement.qualifiers) or not (statement.qualifiers[qualif]) then
+		return nil
+	end
+	local v = statement.qualifiers[qualif][1]
+	if v.snaktype ~= 'value' then -- que faire dans ce cas ?
+		return nil
+	end
+	return wd.dateobject(v.datavalue.value)
+end
+
+function wd.getDate(statement)
+	local period = getDatefromQualif(statement, 'P585') -- retourne un dateobject
+	if period then
+		return period
+	end
+	local begin, ending = getDatefromQualif(statement, 'P580'),  getDatefromQualif(statement, 'P582')
+	if begin or ending then
+		return wd.rangeobject(begin, ending) -- retourne un rangeobject fait de deux dateobject
+	end
+end
+function wd.getFormattedDate(statement, params)
+	if not statement then
+		return nil
+	end
+	local str
+
+	local fuzzy = modules.getData.hasqualifier(statement, {"P1480"}, {"Q5727902"})
+	if fuzzy then
+		fuzzy = true
+	end
+
+	--cherche la date avec les qualifs P580/P582
+	local datetable = wd.getDate(statement)
+	if datetable then
+		str = wd.objecttotext(datetable, params)
+	end
+
+	-- puis limite intérieur / supérieur
+	if not str then
+		local start, ending = getDatefromQualif(statement, 'P1319'), getDatefromQualif(statement, 'P1326')
+		str = modules.formatDate.between(start, ending)
+	end
+
+	 -- sinon, le mainsnak, pour les données de type time
+	if (not str) and (statement.mainsnak.datatype == 'time') then
+		local mainsnak = statement.mainsnak
+		if
+			(mainsnak.snaktype == 'value' and mainsnak.datavalue.value.precision > 7)
+			or
+			(mainsnak.snaktype == 'somevalue')
+		then
+		str = wd.formatSnak(mainsnak, params)
+		end
+	end
+
+	-- ajouter le qualificatif "environ"
+	if fuzzy then
+		str = modules.formatDate.fuzzydate(str)
+	end
+	return str
+end
+
+function wd.wikidataDate(prop, item, params)
+	local claims = wd.getClaims{entity = item, property = prop}
+	if not claims then
+		return nil
+	end
+	params = params or {}
+	local vals = {}
+	for i, j in pairs(claims) do
+		local v = wd.getFormattedDate(j, params)
+		if v then
+			table.insert(vals, v)
+		end
+	end
+
+	local str = modules.linguistic.conj(vals, params.conjtype or 'or')
+
+	if not str then
+		return
+	end
+
+	if params.addcat ~= '-' then
+		str = str .. wd.addtrackingcat(prop)
+	end
+	if params.linkback ~= '-' then
+		str = wd.addLinkback(str, item, prop)
+	end
+	return str
+end
+
+function wd.getReferences(statement)
+	local refdata = statement.references
+	if not refdata then
+		return nil
+	end
+
+	local function firstsnak(prop)
+		return wd.formatSnak(prop[1])
+	end
+
+	local refs = {}
+	for i, ref in pairs(refdata) do
+		local s
+		local function hasValue(prop) -- checks that the prop is here with valid value
+			if ref.snaks[prop] and ref.snaks[prop][1].snaktype == 'value' then
+				return true
+			end
+			return false
+		end
+
+		if ref.snaks.P248 then
+			for j, source in pairs(ref.snaks.P248) do
+				if source.snaktype == 'value' then
+					local page, accessdate
+					if hasValue('P304') then
+						page = wd.formatSnak(ref.snaks.P304[1])
+					end
+					if hasValue('P813') then
+						accessdate = wd.formatSnak(ref.snaks.P813[1])
+					end
+					s = modules.reference.citeitem(tools.getId(source), {['page'] = page, ['accessdate'] = accessdate})
+					table.insert(refs, s)
+				end
+			end
+
+		elseif hasValue('P854') and hasValue('P1476') then
+			local url, title, accessdate, publishdate, publishlang
+			url, title = wd.formatSnak(ref.snaks.P854[1]), wd.formatSnak(ref.snaks.P1476[1])
+			if hasValue('P813') then
+				accessdate = wd.formatSnak(ref.snaks.P813[1])
+			end
+			-- publishdate avec P577 ? (ne semble pas vraiment correspondre)
+			if hasValue('P407') then
+				local id = tools.getId(ref.snaks.P407[1])
+				publishlang = getlangcode(id)
+			end
+			s = modules.cite.lienWeb{titre = title, url = url, langue = publishlang, ['en ligne le'] = publishdate, ['consulté le'] = accessdate}
+			table.insert(refs, s)
+		elseif ref.snaks.P854 and ref.snaks.P854[1].snaktype == 'value' then
+			s = wd.formatSnak(ref.snaks.P854[1])
+			table.insert(refs, s)
+		end
+	end
+	if #refs > 0 then
+		return refs
+	end
+end
+
+function wd.getDatavalue(snak, params)
+	if not params then
+		params = {}
+	end
+	local speciallabels = params.speciallabels -- parfois on a besoin de faire une liste d'éléments pour lequel le libellé doit être changé, pas très pratique d'utiliser une fonction pour ça
+
+	if snak.snaktype ~= 'value' then
+		return nil
+	end
+
+	local datatype = snak.datatype
+	local value = snak.datavalue.value
+
+	local displayformat = params.displayformat
+	if type(displayformat) == 'function' then
+		return displayformat(snak, params)
+ 	end
+
+	if datatype == 'wikibase-item' then
+		return modules.entities.formatEntity(tools.getId(snak), params)
+	end
+
+	if datatype == 'url' then
+		return modules.weblink.makelink(value, params.text)
+	end
+
+	if datatype == 'math' then
+		return mw.getCurrentFrame():extensionTag( "math", value)
+	end
+
+	if (datatype == 'string') or (datatype == 'external-id') or (datatype == 'commonsMedia') then -- toutes les données de type string sauf "math"
+		if params.urlpattern then
+			local urlpattern = params.urlpattern
+			if type(urlpattern) == 'function' then
+				urlpattern = urlpattern(value)
+			end
+			value = '[' .. mw.ustring.gsub(urlpattern, '$1', value) .. ' ' .. (params.text or value) .. ']'
+		end
+		return value
+	end
+
+	if datatype == 'time' then -- format example: +00000001809-02-12T00:00:00Z
+		local precision = params.precision -- degré de précision à afficher ('day', 'month', 'year'), inférieur ou égal à value.precision
+		if displayformat == 'raw' then
+			return value.time
+		else
+			return wd.objecttotext(wd.dateobject(value, {precision = precision}), {linktopic = params.linktopic})
+		end
+	end
+
+	if datatype == 'globe-coordinate' then
+		-- retourne une table avec clés latitude, longitude, précision et globe à formater par un autre module (à changer ?)
+		value.globe = modules.globes[value.globe] -- transforme l'ID du globe en nom anglais utilisable par geohack
+		if displayformat == 'latitude' then
+			return value.latitude
+		elseif displayformat == 'longitude' then
+			return value.longitude
+		else
+			return value -- note : les coordonnées Wikidata peuvent être utilisée depuis Module:Coordinates. Faut-il aussi autoriser à appeler Module:Coordiantes ici ?
+		end
+	end
+
+	if datatype == 'quantity' then -- todo : gérer les paramètre précision
+		local amount, unit = value.amount, value.unit
+
+		if unit then
+			unit = unit:match('Q%d+')
+		end
+
+		local showunit = params.showunit or true
+		if showunit == '-' then
+			showunit = false
+		end
+		local raw
+		if displayformat == "raw" then
+			raw = true
+		end
+		return modules.formatNum.displayvalue(amount, unit,
+			{targetunit = params.targetunit, raw = raw, rounding = params.rounding, showunit = showunit}
+		)
+	end
+	if datatype == 'monolingualtext' then
+		if value.language == defaultlang then
+			return value.text
+		else
+			return modules.langmodule.langue({value.language, value.text})
+		end
+	end
+	return tools.formatError('unknown-datavalue-type' )
+
+end
+
+function wd.getClaims( args ) -- returns a table of the claims matching some conditions given in args
+	return modules.getData.getClaims(args)
+end
+
+
+function wd.stringTable(args) -- like getClaims, but get a list of string rather than a list of snaks, for easier manipulation
+
+  	local claims = args.claims
+  	if not claims then
+		claims = wd.getClaims(args)
+  	end
+	if not claims or claims == {} then
+		return nil
+	end
+	local props = {} -- liste des propriétés associété à chaque string pour catégorisation et linkback
+	for i, j in pairs(claims) do
+                claims[i] = wd.formatStatement(j, args)
+                table.insert(props, j.mainsnak.property)
+	end
+	if args.removedupes and (args.removedupes ~= '-') then
+		claims = tools.addnewvalues({}, claims) -- devrait aussi supprimer de props celles qui ne sont pas utilisées
+	end
+	return claims, props
+end
+
+function wd.getQualifiers(statement, qualifs, params)
+	if not statement.qualifiers then
+		return nil
+	end
+	local vals = {}
+	if type(qualifs) == 'string' then
+		qualifs = tools.splitStr(qualifs)
+	end
+	for i, j in pairs(qualifs) do
+		if statement.qualifiers[j] then
+			for k, l in pairs(statement.qualifiers[j]) do
+				table.insert(vals, l)
+			end
+		end
+	end
+	if #vals == 0 then
+		return nil
+	end
+	return vals
+end
+
+function wd.getFormattedQualifiers(statement, qualifs, params)
+	if not params then params = {} end
+	local qualiftable = wd.getQualifiers(statement, qualifs)
+	if not qualiftable then
+		return nil
+	end
+	for i, j in pairs(qualiftable) do
+		qualiftable[i] = wd.formatSnak(j, params)
+	end
+	return modules.linguistic.conj(qualiftable, params.conjtype)
+end
+
+function wd.sourceStr(sources)
+	if not sources or (#sources == 0) then
+		return nil
+	end
+	for i, j in pairs(sources) do
+		sources[i] = mw.getCurrentFrame():extensionTag( "ref", j)
+	end
+	return table.concat(sources, '<sup class="reference cite_virgule">,</sup>')
+end
+
+function wd.formatStatement( statement, args )
+	if not args then
+		args = {}
+	end
+	if not statement.type or statement.type ~= 'statement' then
+		return tools.formatError( 'unknown-claim-type' )
+	end
+	local prop = statement.mainsnak.property
+	if args.showonlyqualifier and (args.showonlyqualifier ~= '') then
+		return wd.getFormattedQualifiers(statement, args.showonlyqualifier, args)
+	end
+	if args.statementformat and (type(args.statementformat) == 'function') then
+		return args.statementformat(statement, args)
+	end
+	local str = wd.formatSnak( statement.mainsnak, args )
+	if args.showlang == true then
+		str = (showlang(statement) or '') .. '&#32;' .. str
+	end
+	if args.showqualifiers then
+    		local qualifs =  args.showqualifiers
+    		if type(qualifs) == 'string' then
+    			qualifs = tools.splitStr(qualifs)
+    		end
+    		local qualifargs = args.qualifargs or {}
+ 		-- formatage des qualificatifs = args commençant par "qualif", ou à défaut, les mêmes que pour la valeur principale
+		qualifargs.displayformat = args.qualifdisplayformat or args.displayformat
+    		qualifargs.labelformat = args.qualiflabelformat or args.labelformat
+    		qualifargs.link = args.qualiflink or args.link
+
+    		local formattedqualifs = wd.getFormattedQualifiers(statement, qualifs, qualifargs)
+    		if formattedqualifs then
+    			str = str .. modules.linguistic.inparentheses(formattedqualifs, lang)
+		end
+	end
+
+	if args.showdate then -- when "showdate and chronosort are both set, date retrieval is performed twice
+	local period = wd.getFormattedDate(statement, args)
+	if period then
+		str = str .. " <small>(" .. period ..")</small>"
+	end
+	end
+
+	if args.showsource then
+		local sources = wd.getReferences(statement)
+		if sources then
+			local source = wd.sourceStr(sources)
+			str = str .. (source or "")
+		end
+	end
+	if statement.qualifiers then
+		if  modules.getData.hasqualifier(statement, {"P1480"}, {"Q21818619"}) then
+			str = str .. " (ou environs)"
+		end
+		if  modules.getData.hasqualifier(statement, {"P1480"}, {"Q18122778", "Q18912752"}) then
+			str = str .. " (?)"
+		end
+	end
+	return str
+end
+
+function wd.formatSnak( snak, params )
+    if not params then params = {} end -- pour faciliter l'appel depuis d'autres modules
+    if snak.snaktype == 'somevalue' then
+        return unknownvalue(snak, params.unknownlabel)
+    elseif snak.snaktype == 'novalue' then
+        return novalue(params.novaluelabel)
+    elseif snak.snaktype == 'value' then
+        return wd.getDatavalue( snak, params)
+    else
+        return tools.formatError( 'unknown-snak-type' )
+    end
+end
+
+function wd.getDescription(entity, lang)
+	lang = lang or defaultlang
+
+	local description
+	if lang == defaultlang then
+		return  mw.wikibase.descriptionl(qid)
+	end
+    if not entity.descriptions then
+    	return translate('no description')
+    end
+    local descriptions = entity.descriptions
+    if not descriptions then
+    	return nil
+    end
+    if descriptions[lang] then
+    	return descriptions[delang].value
+    end
+    return entity.id
+end
+
+function wd.addLinkback(str, id, property)
+	if not id then
+		id = tools.getEntity()
+	end
+	if not id then
+		return str
+	end
+	if type(property) == 'table' then
+		property = property[1]
+	end
+	if type(id) == 'table' then
+		id = id.id
+	end
+
+	local class = ''
+	if property then
+		class = 'wd_' .. string.lower(property)
+	end
+	local icon = '[[File:Blue pencil.svg|%s|10px|baseline|link=%s]]'
+	local title = translate('see-wikidata-value')
+	local url = mw.uri.fullUrl('d:' .. id, 'uselang=fr')
+	url.fragment = property -- ajoute une #ancre si paramètre "property" défini
+	url = tostring(url)
+	local v = mw.html.create('span')
+		:addClass(class)
+		:wikitext(str)
+		:tag('span')
+			:addClass('noprint wikidata-linkback')
+			:css('padding-left', '0.5em')
+			:wikitext(icon:format(title, url))
+		:allDone()
+	return tostring(v)
+end
+
+function wd.addRefAnchor(str, id)
+--[[
+    Insère une ancre pour une référence générée à partir d'un élément wd.
+    L'id Wikidata sert d'identifiant à l'ancre, à utiliser dans les modèles type "harvsp"
+--]]
+    return tostring(mw.html.create('span'):attr('id', id)
+    	                                  :attr('class', "ouvrage")
+    	                                  :wikitext(str)
+    	            )
+end
+
+function wd.formatStatements( args )--Format statement and concat them cleanly
+	if args.value == '-' then
+		return nil
+	end
+	local valueexpl = translate("activate-query")
+	--If a value is already set, use it
+	if args.value and (args.value ~= '') and (args.value ~= valueexpl) then
+		return args.value
+	end
+	-- if args.expl: return something only one if explicitly required in Wikitext
+	if args.expl and (args.value ~= valueexpl) then
+		return nil
+	end
+	args.entity = tools.getEntity(args.entity)
+
+	if args.grouped and args.grouped ~= '' then
+		args.grouped = false
+		return wd.groupedStatements(args)
+	end
+	local valuetable = args.valuetable -- dans le cas où les valeurs sont déjà formtées
+	local props -- les prorpriétés réellement utilisées (dans certainse cas, ce ne sont pas toutes celles de ags.property
+	if not valuetable then -- cas le plus courant
+		valuetable, props = wd.stringTable(args)
+	end
+
+	local str = wd.tableToText(valuetable, args)
+	if not str then
+		return nil
+	end
+	if not props then
+		props = tools.splitStr(args.property)[1]
+	end
+	if args.ucfirst ~= '-' then
+		str = modules.linguistic.ucfirst(str)
+	end
+
+	if args.addcat and (args.addcat ~= '-') then
+		str = str .. wd.addtrackingcat(props)
+	end
+	if args.linkback and (args.linkback ~= '-') then
+		str = wd.addLinkback(str, args.entity, props)
+	end
+	return str
+end
+
+function wd.showQualifier( args )
+	local qualifs = args.qualifiers or args.qualifier
+
+	if not qualifs then
+		return tools.formatError( 'property-param-not-provided' )
+	end
+	if type(qualifs) == 'string' then
+		qualifs = tools.splitStr(qualifs)
+	end
+
+	local claims = wd.getClaims(args)
+	if not claims then
+		return nil
+	end
+	local str = ''
+	for i, j in pairs(claims) do
+		local new = wd.getFormattedQualifiers(j, qualifs, args) or ''
+		str = str .. new
+	end
+	return str
+end
+
+function wd.formatAndCat(args)
+	if not args then
+		return nil
+	end
+	args.linkback = true
+	args.addcat = true
+	if args.value then -- do not ignore linkback and addcat, as formatStatements do
+		local val = args.value .. wd.addtrackingcat(args.property)
+		val = wd.addLinkback(val, args.entity, args.property)
+		return val
+	end
+	return wd.formatStatements( args )
+end
+
+function wd.getTheDate(args)
+	local claims = wd.getClaims(args)
+	if not claims then
+		return nil
+	end
+	local formattedvalues = {}
+	for i, j in pairs(claims) do
+		local v = wd.getFormattedDate(j, args)
+		if v then
+			table.insert(formattedvalues, v )
+		end
+	end
+	local val = modules.linguistic.conj(formattedvalues)
+	if not val then
+		return nil
+	end
+	if args.addcat == true then
+		val = val .. wd.addtrackingcat(args.property)
+	end
+	val = wd.addLinkback(val, args.entity, args.property)
+	return val
+end
+
+
+-- Complex functions using several items
+local function getids(query)
+	query.excludespecial = true
+	query.displayformat = 'raw'
+	return wd.stringTable(query)
+end
+
+
+function wd.Dump(entity)
+	entity = tools.getEntity(entity)
+	if not entity then
+		return tools.formatError("entity-param-not-provided")
+	end
+	return "<pre>"..mw.dumpObject(entity).."</pre>"
+end
+
+function wd.groupedStatements(args, type) -- pour l'options "grouped" de formatStatement (code un peu pas beau)
+
+	local claims = wd.getClaims(args)
+	if not claims then
+		return nil
+	end
+	local groupedClaims = {}
+
+	local function addClaim(claim) -- ajoute une affirmation à groupedClaims, en respectant l'ordre initial
+		local id = tools.getMainId(claim)
+		for i, j in pairs(groupedClaims) do
+			if (j.id == id) then
+				table.insert(groupedClaims[i].claims, claim)
+				return
+			end
+		end
+		table.insert(groupedClaims, {id = id, claims = {claim}})
+	end
+
+	for i, claim in pairs(claims) do
+		addClaim(claim)
+	end
+
+	local stringTable = {}
+
+	local funs = { -- fonctions pour les arguments se rapportant généralement à une déclaration individuels, adaptés ici pour s'appliquer à toutes les déclarations avec la même main value
+		{param = "showqualifiers", fun = function(str, claims)
+			local qualifs = {}
+			for i, claim in pairs(claims) do
+				local news = wd.getFormattedQualifiers(claim, args.showqualifiers, args)
+				if news then
+					table.insert(qualifs, news)
+				end
+			end
+			local qualifstr = modules.linguistic.conj(qualifs, " ; ") -- point virgule pour séparer les années
+			if not qualifstr then
+				return str
+			end
+			return str .. " " .. modules.linguistic.inparentheses(qualifstr)
+			end
+		},
+		{param = "showdate", fun = function(str, claims)
+			local dates = {}
+			for i, statement in pairs(claims) do
+				local s = wd.getFormattedDate(statement, args)
+				if statement then table.insert(dates, s) end
+			end
+			local datestr = modules.linguistic.conj(dates)
+			if not datestr then
+				return str
+			end
+			return str .. "<small>" .. modules.linguistic.inparentheses(datestr) .. "</small>"
+			end
+		},
+		{param = "showsource", fun = function(str, claims)
+			local sources = {}
+
+			local function dupeRef(old, new) -- deux statments différents peuvent avoir la même source, ne l'afficher qu'une fois
+				for i, j in pairs(old) do
+					if j == new then
+						return true
+					end
+				end
+			end
+			for i, claim in pairs(claims) do
+				local refs = wd.getReferences(claim)
+				if refs then
+					for i, j in pairs(refs) do
+						if not dupeRef(sources, j) then
+							table.insert(sources, j)
+						end
+					end
+				end
+			end
+ 			return str .. (wd.sourceStr(sources) or "")
+			end
+		}
+	}
+
+	for i, group in pairs(groupedClaims) do -- bricolage pour utiliser les arguments de formatStatements
+		local str = wd.formatEntity(group.id, args)
+		for i, fun in pairs(funs) do
+			if args[fun.param] then
+				str = fun.fun(str, group.claims, args)
+			end
+		end
+		table.insert(stringTable, str)
+	end
+
+	args.valuetable = stringTable
+	return wd.formatStatements(args)
+end
+
+return wd
+
+					</code></pre>
+					<small style="font-size: 40%">© Contributeurs de Module:Wikidata, CC-BY-SA</small>
 				</section>
 				<section data-background="images/The_Scream.jpg">
 					<!-- https://commons.wikimedia.org/wiki/File:The_Scream.jpg -->
@@ -437,12 +1429,12 @@
 				<section>
 					<h2>Documentation des modèles</h2>
 					<p>
-						<a href="$URL"><img src="images/$IMG" style="width: 60%;"></a>
+						<a href="https://commons.wikimedia.org/wiki/File:Photographie_auf_drei_Handgriffe_reduziert_(Kodak).jpg"><img src="images/Photographie_auf_drei_Handgriffe_reduziert_(Kodak).jpg" style="width: 30%;"></a>
 						<br>
-						<small style="font-size: 40%">$AUTHOR</small>
+						<small style="font-size: 40%">Auteur inconnu, DP</small>
 					</p>
 					<ul>
-						<li><a href="https://lists.wikimedia.org/mailman/listinfo/wikitech-ambassadors">lists.wikimedia.org/mailman/listinfo/wikitech-ambassadors</a></li>
+						<li><a href="https://fr.wikipedia.org/wiki/Modèle:Admissibilité_à_vérifier">Modèle:Admissibilité à vérifier</a></li>
 					</ul>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>

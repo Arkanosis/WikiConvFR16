@@ -29,6 +29,12 @@
 * section=
 * Special:Export
 
+### Dump
+* wget | bunzip
+* lxml / page parser
+* Exemple : dictionnaires de synonymes / antonymes à partir du wikt (+ comparaison avec WOLF) ; stats avec datamash
+* Exemple : articles sans portails / UTF-8 invalide
+
 ### API
 * api.php
 * api.php?format=jsonfm&action=query&titles=LZMA&prop=revisions&rvprop=content&rvsection=0
@@ -42,12 +48,6 @@
 * SPARQL https://query.wikidata.org/
 * Exemple : drapeaux des pays par continent
 * Exemples avec graphiques ? Cf. blogs Poulpy & Coyau
-
-### Dump
-* wget | bunzip
-* lxml / page parser
-* Exemple : dictionnaires de synonymes / antonymes à partir du wikt (+ comparaison avec WOLF) ; stats avec datamash
-* Exemple : articles sans portails / UTF-8 invalide
 
 ### Dump cyrrus search
 

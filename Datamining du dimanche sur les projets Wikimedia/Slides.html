@@ -404,7 +404,7 @@ relations 61562
 					<ul class="fragment">
 						<li>67 449 entrées</li>
 						<li>61 562 relations</li>
-						<li>… de qualité franchement acceptable.</li>
+						<li>… de qualité <em>franchement</em> acceptable.</li>
 					</ul>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
@@ -426,17 +426,17 @@ relations 61562
 								<th>Entrées</th>
 								<td>49 332</td>
 								<td>62 452</td>
-								<td>67 449</td>
+								<td><strong style="color: green">67 449</strong></td>
 							</tr>
 							<tr>
 								<th>Relations</th>
-								<td>203 797</td>
+								<td><strong style="color: green">203 797</strong></td>
 								<td>70 039</td>
 								<td>61 562</td>
 							</tr>
 							<tr>
 								<th>Qualité</th>
-								<td>Exceptionnelle</td>
+								<td><strong style="color: green">Exceptionnelle</strong></td>
 								<td>Perfectible</td>
 								<td>Très bonne</td>
 							</tr>
@@ -444,7 +444,7 @@ relations 61562
 								<th>Effort</th>
 								<td>« l’INALF […] le laboratoire ELSAP […] le CRISCO […] depuis 1994, un important travail […] la collaboration des utilisateurs […] davantage de moyens humains »</td>
 								<td>« Sagot et Fišer 2008a, Sagot et Fišer 2008b, Fišer et Sagot 2008 […] Sagot, Fort et Venant 2009a, Sagot, Fort et Venant 2009b […] Sagot et Fišer 2011, Sagot et Fišer 2012a […] Gábor et al. 2012 […] Apidianaki et Sagot, 2012 […] Hanoka et Sagot 2012 […] Sagot et Fišer, 2012b »</td>
-								<td>Quelques dizaines de minutes<span class="fragment"> … et le travail de quelques milliers de contributeurs :)</span></td>
+								<td><strong style="color: green">Quelques dizaines de minutes</strong><em class="fragment"> … et le travail de quelques milliers de contributeurs :)</em></td>
 							</tr>
 						</tbody>
 					</table>
@@ -464,6 +464,187 @@ relations 61562
 						<li>Oui, mais <em>combien</em> ?</li>
 						<li class="fragment"><a href="https://fr.wiktionary.org/wiki/Sp%C3%A9cial:Statistiques">[[Spécial:Statistiques]]</a></li>
 						<li class="fragment">Mmh…</li>
+						<li class="fragment"><a href="https://fr.wiktionary.org/wiki/Spécial%3AListe_des_utilisateurs">[[Spécial:Liste_des_utilisateurs]]</a><ul class="fragment">
+							<li><a href="https://fr.wiktionary.org/w/index.php?title=Spécial%3AListe_des_utilisateurs&username=&group=&editsOnly=1&limit=50">[[Spécial:Liste_des_utilisateurs]] + <code>&amp;editsOnly=1</code></a></li>
+						</ul></li>
+					</ul>
+					<pre class="fragment"><code>
+$ curl 'https://fr.wiktionary.org/w/api.php?action=query&list=allusers&auwitheditsonly=true&format=json'
+					</code></pre>
+					<pre class="fragment"><code>
+$ http 'https://fr.wiktionary.org/w/api.php' \
+  action==query \
+  list==allusers \
+  auwitheditsonly==true \
+  format==json
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Statistiques : API</h2>
+					<pre style="height:80%"><code style="height:100%; max-height: 100%">
+$ from=''
+  count=0
+  while true; do
+    echo $count $from
+    users=$(http 'https://fr.wiktionary.org/w/api.php' \
+      action==query \
+      list==allusers \
+      auwitheditsonly==true \
+      aufrom==$from \
+      aulimit==500 \
+      format==json)
+    from=$(echo $users | jq -r '.continue.aufrom')
+    [[ $from = null ]] && break
+    count=$((count + 500))
+  done
+  count=$((count + $(echo $users | jq '.query.allusers | length')))
+  echo $count
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Statistiques : API</h2>
+					<pre style="height:80%"><code style="height:100%; max-height: 100%">
+$ time (
+  from=''
+  count=0
+  while true; do
+    echo $count $from
+    users=$(http 'https://fr.wiktionary.org/w/api.php' \
+      action==query \
+      list==allusers \
+      auwitheditsonly==true \
+      aufrom==$from \
+      aulimit==500 \
+      format==json)
+    from=$(echo $users | jq -r '.continue.aufrom')
+    [[ $from = null ]] && break
+    count=$((count + 500))
+  done
+  count=$((count + $(echo $users | jq '.query.allusers | length')))
+  echo $count
+  )
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Statistiques : API</h2>
+					<pre style="height:80%"><code style="height:100%; max-height: 100%">
+$ time (
+  from=''
+  count=0
+  while true; do
+    echo $count $from
+    users=$(http 'https://fr.wiktionary.org/w/api.php' \
+      action==query \
+      list==allusers \
+      auwitheditsonly==true \
+      aufrom==$from \
+      aulimit==500 \
+      format==json)
+    from=$(echo $users | jq -r '.continue.aufrom')
+    [[ $from = null ]] && break
+    count=$((count + 500))
+  done
+  count=$((count + $(echo $users | jq '.query.allusers | length')))
+  echo $count
+  )
+0
+500 Alf.68
+1000 Astrée
+1500 Bibliocaser
+2000 Carnby
+2500 Copyrightdl
+3000 Dicolinguiste
+3500 Elsewhere
+4000 Florent45
+4500 Ghuysmans99
+5000 Hendumaica
+5500 Jack Merridew
+6000 Josie92
+6500 Kronf
+7000 Linotte13
+7500 ManuelBrereton
+8000 Michka B
+8500 NatouB
+9000 Oratyon
+9500 PhoebeBCQ
+10000 Rantatero
+10500 Saka876
+11000 Snipre
+11500 TcheBTchev
+12000 Tyseria
+12500 Wikiwoordfanaat
+13000 Zoorin
+13162
+4,83s user 0,58s system 41% cpu 13,170 total
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Statistiques : SQL</h2>
+					<p>
+						<blockquote cite="#">
+… et le travail de quelques milliers de contributeurs :)
+						</blockquote>
+						— Arkanosis, 21 août 2016
+					</p>
+					<ul>
+						<li>Oui, mais <em>combien</em> ?</li>
+						<li>13162 !</li>
+						<li class="fragment">Peut-on aller plus vite ?</li>
+						<li class="fragment"><em>Enter…</em> Wikimedia Tool Labs</li>
+					</ul>
+					<pre class="fragment"><code>
+ssh login.tools.wmflabs.org # Enter Wikimedia Tool Labs
+					</code></pre>
+					<pre class="fragment"><code>
+$ become artlist
+					</code></pre>
+					<ul class="fragment">
+						<li><a href="https://tools.wmflabs.org/artlist/">tools.wmflabs.org/artlist/</a></li>
+					</ul>
+					<pre class="fragment"><code>
+$ sql frwiktionary
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Statistiques : SQL</h2>
+					<pre><code>
+MariaDB [frwiktionary_p]> select COUNT(*) from user WHERE user_editcount > 0;
++----------+
+| COUNT(*) |
++----------+
+|    13170 |
++----------+
+1 row in set (0.09 sec)
+					</code></pre>
+					<ul class="fragment">
+						<li>Conclusion 1 : on peut aller plus vite</li>
+						<li class="fragment">Conclusion 2 : choisir le bon outil :)</li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Aller plus loin (mais pas trop)</h2>
+					<ul>
+						<li><a href="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Prise_de_d%C3%A9cision/Crit%C3%A8res_d%27admissibilit%C3%A9_des_footballeurs">[[Wikipédia:Prise_de_décision/Critères_d'admissibilité_des_footballeurs]]</a></li>
+						<li class="fragment">Changer d'approche !</li>
+						<li class="fragment">Wikidata, etc.</li>
 					</ul>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>

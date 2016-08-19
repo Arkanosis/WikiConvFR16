@@ -1,0 +1,564 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=no">
+
+		<title>Datamining du dimanche sur les projets Wikimedia</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style type="text/css">
+			section {
+				height: 100%;
+				width: 100%;
+			}
+			.caption {
+				position: absolute;
+				bottom: 0px;
+				right: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2 style="margin-top: 5%">Datamining du dimanche sur les projets Wikimedia</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:Magnifying_glass_with_focus_on_paper.png"><img src="images/Magnifying_glass_with_focus_on_paper.jpg" style="width: 50%;"></a>
+						<br>
+						<small style="font-size: 40%">© Niabot, CC-BY-SA 3.0</small>
+						<br>
+						<a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — WikiConvention francophone 2016
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : CRISCO DES</h2>
+					<p>
+						<a href="http://www.crisco.unicaen.fr/des/synonymes/encyclop%C3%A9die"><img src="images/des.png" style="width: 35%;"></a>
+						<br>
+						<small style="font-size: 40%">© ELSAP, CRISCO, Université de Caen Basse-Normandie</small>
+					</p>
+					<ul>
+						<li><a href="http://www.crisco.unicaen.fr/des/">www.crisco.unicaen.fr/des/</a></li>
+						<li class="fragment">49 332 entrées</li>
+						<li class="fragment">203 797 relations</li>
+						<li class="fragment">… classés par proximité, etc.</li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : WOLF</h2>
+					<p>
+						<a href="http://alpage.inria.fr/~sagot/wolf.html"><img src="images/wolf.png" style="width: 35%;"></a>
+						<br>
+						<small style="font-size: 40%">© Benoît Sagot, Darja Fiser et al., INRIA, Cecill-C</small>
+					</p>
+					<ul>
+						<li>« Wordnet Libre du Français »</li>
+						<li><a href="https://gforge.inria.fr/projects/wolf/">gforge.inria.fr/projects/wolf/</a></li>
+					</ul>
+					<pre class="fragment"><code>
+$ wget 'https://gforge.inria.fr/frs/download.php/file/33496/wolf-1.0b4.xml.bz2' -O - | \
+   bunzip2 > wolf-1.0b4.xml
+					</code></pre>
+					<pre class="fragment"><code>
+$ less wolf-1.0b4.xml
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : WOLF</h2>
+					<pre><code>
+$ < wolf-1.0b4.xml \
+   sed '2d' | \
+   xml sel -t \
+     -m '//SYNSET' \
+     -m 'SYNONYM[LITERAL!="_EMPTY_"]' \
+     -n \
+       -v LITERAL \
+       -n \
+   > /tmp/wolf-1.0b4.syn
+					</code></pre>
+					<pre class="fragment"><code>
+$ less /tmp/wolf-1.0b4.syn
+					</code></pre>
+					<pre class="fragment"><code>
+$ < wolf-1.0b4.xml \
+   sed '2d' | \
+   xml sel -t \
+     -m '//SYNSET' \
+     -m 'SYNONYM[LITERAL!="_EMPTY_"]' \
+     -v "count(LITERAL)" \
+     -n | \
+   grep -v '^[01]$' | \
+   > counts.lst
+					</code></pre>
+					<pre class="fragment"><code>
+$ < counts.lst
+   datamash sum 1
+62452
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : WOLF</h2>
+					<blockquote cite="https://fr.wikipedia.org/wiki/Combinaison_(math%C3%A9matiques)" style="font-size: 90%; width: 90%">
+En mathématiques, lorsqu'on choisit k objets parmi n objets discernables (numérotés de 1 à n) et que l’ordre dans lequel les objets sont placés (ou énumérés) n’a pas d’importance, on peut les représenter par un ensemble à k éléments. Les combinaisons servent donc, entre autres, en combinatoire.
+					</blockquote>
+					<ul>
+						<li><a href="https://fr.wikipedia.org/wiki/Combinaison_(math%C3%A9matiques)">fr.wikipedia.org/wiki/Combinaison_(mathématiques)</a></li>
+					</ul>
+					<pre class="fragment"><code>
+#! /usr/bin/env python3
+import math, sys
+f = math.factorial
+for line in sys.stdin:
+    count = int(line.rstrip())
+    print(f(count) / f(2) / f(count - 2))
+					</code></pre>
+					<pre class="fragment"><code>
+$ < counts.lst
+   count_combinations.py | \
+   datamash sum 1
+70039
+					</code></pre>
+					<ul class="fragment">
+						<li>62 452 entrées</li>
+						<li>70 039 relations</li>
+						<li>… un peu en vrac, il faut avouer.</li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : Wiktionnaire</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:WiktionaryFr.svg"><img src="images/WiktionaryFr.svg.png" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">© Contributeurs du wiktionnaire, CC-BY-SA 3.0</small>
+					</p>
+					<ul>
+						<li>« Le dictionnaire libre »</li>
+					</ul>
+					<pre class="fragment"><code>
+$ wget 'https://dumps.wikimedia.org/frwiktionary/latest/frwiktionary-latest-pages-meta-current.xml.bz2' -O - | \
+   bunzip2 > frwikt-20160804.xml
+					</code></pre>
+					<pre class="fragment"><code>
+$ less frwikt-20160804.xml
+					</code></pre>
+					<pre class="fragment"><code>
+$ grep synonymes --color=always --after-context=15 frwikt-20160804.xml | head -n 30
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : Wiktionnaire</h2>
+					<pre style="height:80%"><code style="height:100%; max-height: 100%">
+#! /usr/bin/env python3
+
+import xml.sax
+
+class Page:
+
+    def __init__(self, ns, title, text):
+        self.ns = ns
+        self.title = title
+        self.text = text
+
+class Handler(xml.sax.handler.ContentHandler):
+
+    def __init__(self, callback):
+        super().__init__()
+        self.__pageContent = {}
+        self.__currentTag = ''
+        self.__callback = callback
+
+    def startElement(self, name, attrs):
+        if name == 'page':
+            self.__pageContent = {}
+        self.__currentTag = name
+
+    def endElement(self, name):
+        if name == 'page':
+            self.__callback(Page(
+                int(''.join(self.__pageContent.get('ns', []))),
+                ''.join(self.__pageContent.get('title', [])),
+                ''.join(self.__pageContent.get('text', []))
+            ))
+        self.__currentTag = ''
+
+    def __append(self, content):
+        self.__pageContent.setdefault(self.__currentTag, []).append(content)
+
+    characters = __append
+    ignorableWhiteSpace = __append
+
+def parseWithCallback(inputFileName, callback):
+    parser = xml.sax.make_parser()
+    parser.setContentHandler(Handler(callback))
+    parser.parse(inputFileName)
+
+def matchOn(string):
+    match = [None]
+    def on(reg):
+        match[0] = reg.search(string)
+        return match[0]
+    def _(group):
+        return match[0].group(group)
+    return on, _
+
+def matchOnLines(text):
+    for line in text.split('\n'):
+        on, _ = matchOn(line)
+        yield line, on, _
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : Wiktionnaire</h2>
+					<pre style="height:80%"><code style="height:100%; max-height: 100%">
+#! /usr/bin/env python3
+
+import sys
+import wikidump
+
+def processPage(page):
+
+    print('=' * 80)
+    print(page.ns)
+    print(page.title)
+    print(page.text)
+
+if __name__ == '__main__':
+
+    if len(sys.argv) != 2:
+        print('Usage: {} wikiDump.xml'.format(sys.argv[0].split(os.sep)[-1]))
+        sys.exit(1)
+
+    wikidump.parseWithCallback(sys.argv[1], processPage)
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : Wiktionnaire</h2>
+					<pre style="height:80%"><code style="height:100%; max-height: 100%">
+#! /usr/bin/env python3
+
+import re
+import sys
+import wikidump
+
+_lang = re.compile(r'=+\s*\{\{langue\|(?P&lt;lang>.+?)\}\}\s*=+')
+_synonyms = re.compile(r'=+\s*\{\{S\|synonymes\}\}\s*=+')
+_title = re.compile(r'^=+\s*=+')
+_word = re.compile(r'^\*\s*\[\[(.+?\|)?(?P&lt;word>.+?)\]\]')
+
+def processPage(page):
+
+    if page.ns == 0:
+
+        keepWords = False
+        lang = 'fr'
+
+        for line, on, _ in wikidump.matchOnLines(page.text):
+
+            if on(_synonyms):
+                keepWords = True
+            elif on(_lang):
+                lang = _('lang')
+            elif on(_title):
+                keepWords = False
+
+            if keepWords and lang == 'fr' and on(_word):
+                print(page.title + ' → ', _('word'))
+
+if __name__ == '__main__':
+
+    if len(sys.argv) != 2:
+        print('Usage: {} wikiDump.xml'.format(sys.argv[0].split(os.sep)[-1]))
+        sys.exit(1)
+
+    wikidump.parseWithCallback(sys.argv[1], processPage)
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : Wiktionnaire</h2>
+					<pre style="height:80%"><code style="height:100%; max-height: 100%">
+#! /usr/bin/env python3
+
+import re
+import sys
+import wikidump
+
+_lang = re.compile(r'=+\s*\{\{langue\|(?P&lt;lang>.+?)\}\}\s*=+')
+_synonyms = re.compile(r'=+\s*\{\{S\|synonymes\}\}\s*=+')
+_title = re.compile(r'^=+\s*=+')
+_word = re.compile(r'^\*\s*\[\[(.+?\|)?(?P&lt;word>.+?)\]\]')
+
+words = set()
+relations = set()
+
+def processPage(page):
+
+    if page.ns == 0:
+
+        keepWords = False
+        lang = 'fr'
+
+        for line, on, _ in wikidump.matchOnLines(page.text):
+
+            if on(_synonyms):
+                keepWords = True
+            elif on(_lang):
+                lang = _('lang')
+            elif on(_title):
+                keepWords = False
+
+            if keepWords and lang == 'fr' and on(_word):
+                words.add(page.title)
+                words.add(_('word'))
+                relations.add(tuple(sorted([page.title, _('word')])))
+
+if __name__ == '__main__':
+
+    if len(sys.argv) != 2:
+        print('Usage: {} wikiDump.xml'.format(sys.argv[0].split(os.sep)[-1]))
+        sys.exit(1)
+
+    wikidump.parseWithCallback(sys.argv[1], processPage)
+
+    print('words', len(words))
+    print('relations', len(relations))
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : Wiktionnaire</h2>
+					<pre><code>
+$ ./extract_synonyms.py frwikt.xml  | head -n 25
+accueil →  home
+accueil →  main page
+accueil →  page d’accueil
+siège →  cul
+siège →  derrière
+siège →  fondement
+siège →  blocus
+meuble →  garniture
+meuble →  mobilier
+militaire →  martial
+militaire →  guerrier
+militaire →  soldat
+militaire →  trouffion
+militaire →  bidasse
+militaire →  chair à canon
+militaire →  fantassin
+militaire →  gendarme
+militaire →  mercenaire
+militaire →  milicien
+manchot →  unibrassiste
+manchot →  manchois
+manchot →  unibrassiste
+bande dessinée →  art
+bande dessinée →  bédé
+bande dessinée →  illustré
+					</code></pre>
+					<pre class="fragment"><code>
+$ ./count_synonyms.py frwikt-20160804.xml
+words 67449
+relations 61562
+./count_synonyms.py frwikt.xml  279,07s user 1,08s system 99% cpu 4:40,26 total
+					</code></pre>
+					<ul class="fragment">
+						<li>67 449 entrées</li>
+						<li>61 562 relations</li>
+						<li>… de qualité franchement acceptable.</li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Synonymes : comparaison</h2>
+					<table>
+						<thead>
+							<tr>
+								<th></th>
+								<th>DES</th>
+								<th>WOLF</th>
+								<th>Wiktionnaire</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>Entrées</th>
+								<td>49 332</td>
+								<td>62 452</td>
+								<td>67 449</td>
+							</tr>
+							<tr>
+								<th>Relations</th>
+								<td>203 797</td>
+								<td>70 039</td>
+								<td>61 562</td>
+							</tr>
+							<tr>
+								<th>Qualité</th>
+								<td>Exceptionnelle</td>
+								<td>Perfectible</td>
+								<td>Très bonne</td>
+							</tr>
+							<tr class="fragment">
+								<th>Effort</th>
+								<td>« l’INALF […] le laboratoire ELSAP […] le CRISCO […] depuis 1994, un important travail […] la collaboration des utilisateurs […] davantage de moyens humains »</td>
+								<td>« Sagot et Fišer 2008a, Sagot et Fišer 2008b, Fišer et Sagot 2008 […] Sagot, Fort et Venant 2009a, Sagot, Fort et Venant 2009b […] Sagot et Fišer 2011, Sagot et Fišer 2012a […] Gábor et al. 2012 […] Apidianaki et Sagot, 2012 […] Hanoka et Sagot 2012 […] Sagot et Fišer, 2012b »</td>
+								<td>Quelques dizaines de minutes<span class="fragment"> … et le travail de quelques milliers de contributeurs :)</span></td>
+							</tr>
+						</tbody>
+					</table>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Statistiques</h2>
+					<p>
+						<blockquote cite="#">
+… et le travail de quelques milliers de contributeurs :)
+						</blockquote>
+						— Arkanosis, 21 août 2016
+					</p>
+					<ul class="fragment">
+						<li>Oui, mais <em>combien</em> ?</li>
+						<li class="fragment"><a href="https://fr.wiktionary.org/wiki/Sp%C3%A9cial:Statistiques">[[Spécial:Statistiques]]</a></li>
+						<li class="fragment">Mmh…</li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>$TITRE</h2>
+					<p>
+						<a href="$URL"><img src="images/$IMG" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">$AUTEUR</small>
+					</p>
+					<ul>
+						<li>$POINT</li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Réplicats des bases de données (Tool Labs)</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:MediaWiki_1.24.1_database_schema.svg"><img src="images/MediaWiki_1.24.1_database_schema.svg.png" style="width: 50%;"></a>
+						<br>
+						<small style="font-size: 40%">© Krinkle, CC-BY-SA 3.0</small>
+					</p>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Réplicats des bases de données (Tool Labs)</h2>
+					<pre><code>
+SELECT page_title, COUNT(*)
+  FROM revision_userindex
+JOIN page
+  ON page_id = rev_page
+JOIN user
+  ON user_id = rev_user
+WHERE user_name = 'Arktest'
+  AND page_namespace = 4
+GROUP BY page_title
+ORDER BY COUNT(*) DESC
+LIMIT 30;
+					</code></pre>
+					<ul>
+						<li>$POINT</li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>~~~~</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:Table_du_Gros_Souper.JPG"><img src="images/Table_du_Gros_Souper.JPG" style="width: 500.0px;"></a>
+						<br>
+						<small style="font-size: 40%">c̶ Véronique Pagnier, CC-0</small>
+					</p>
+					<ul>
+						<li><a href="http://fr.wikipedia.org/wiki/User_talk:Arkanosis">frwp.org/User:Arkanosis</a></li>
+						<li><a href="mailto:jroquet@arkanosis.net">jroquet@arkanosis.net</a></li>
+						<li><a href="#">@Arkanosis</a> <small>freenode, GitHub, Twitter…</small></li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				width: '100%',
+				height: '100%',
+
+				history: true,
+
+				keyboard: {
+					'0': 'togglePause',
+					'9': 'toggleOverview',
+					'38': 'navigateLeft',
+					'40': 'navigateRight'
+				},
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js' },
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

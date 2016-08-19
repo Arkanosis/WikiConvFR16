@@ -6,7 +6,8 @@
 * Téléphone One (TOTP)
 * Câble micro-HDMI → HDMI
 * Adaptateur micro-HDMI → VGA
-* Pointeur laser
+* Pointeur laser + pile de rechange
+* Souris
 
 ## Logiciel
 * weechat (#wikitech, #wikimedia-labs)

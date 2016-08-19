@@ -8,6 +8,19 @@
 * Salle : Nation
 * Spectateurs : 55
 
+## Préparation
+* Fichiers et scripts en local
+* Une page par outil / groups d'outils
+ * wget / curl / httpie
+ * xmlstarlet / XSLT
+ * jq
+ * grep
+ * sed
+ * awk
+ * datamash
+ * python
+ * mysql
+
 ## Plan
 
 ### Scrapping
@@ -33,7 +46,7 @@
 ### Dump
 * wget | bunzip
 * lxml / page parser
-* Exemple : dictionnaires de synonymes / antonymes à partir du wikt (+ comparaison avec WOLF)
+* Exemple : dictionnaires de synonymes / antonymes à partir du wikt (+ comparaison avec WOLF) ; stats avec datamash
 * Exemple : articles sans portails / UTF-8 invalide
 
 ### Dump cyrrus search

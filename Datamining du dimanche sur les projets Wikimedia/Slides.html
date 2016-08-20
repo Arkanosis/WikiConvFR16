@@ -64,9 +64,9 @@
 				<section>
 					<h2>À la main</h2>
 					<p>
-						<a href="https://commons.wikimedia.org/wiki/File:Frogpad_keyboard.jpg"><img src="images/Frogpad_keyboard.jpg" style="width: 30%;"></a>
+						<a href="https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-13175-0015,_Bergarbeiter_bohrend.jpg"><img src="images/Bundesarchiv_Bild_183-13175-0015,_Bergarbeiter_bohrend.jpg" style="width: 20%;"></a>
 						<br>
-						<small style="font-size: 40%">© Hustvedt, CC-BY-SA 3.0</small>
+						<small style="font-size: 40%">© Günther Paalzow, Deutsches Bundesarchiv, CC-BY-SA 3.0</small>
 					</p>
 					<ul>
 						<li><a href="https://fr.wikipedia.org/wiki/ZAC_Pajol">ZAC Pajol</a></li>
@@ -76,17 +76,97 @@ $ curl 'https://fr.wikipedia.org/wiki/ZAC_Pajol'
 					</code></pre>
 					<pre class="fragment"><code>
 $ curl 'https://fr.wikipedia.org/wiki/ZAC_Pajol?action=render'
+$ curl 'https://fr.wikipedia.org/wiki/ZAC_Pajol?action=raw'
+					</code></pre>
+					<pre class="fragment"><code>
+$ curl 'https://fr.wikipedia.org/wiki/ZAC_Pajol?action=raw&amp;section=0'
+					</code></pre>
+					<ul class="fragment">
+						<li><a href="https://fr.wikipedia.org/wiki/Spécial:Export">[[Spécial:Export]]</a></li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>curl &amp; wget</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:Curl-logo.svg"><img src="images/Curl-logo.svg.png" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">© Soft Dreams, CC-BY-SA 4.0</small>
+					</p>
+					<pre><code>
+$ curl 'https://fr.wikipedia.org/wiki/ZAC_Pajol'
+$ wget 'https://fr.wikipedia.org/wiki/ZAC_Pajol'
+					</code></pre>
+					<pre class="fragment"><code>
+$ curl 'https://fr.wikipedia.org/wiki/ZAC_Pajol' -O
+$ wget 'https://fr.wikipedia.org/wiki/ZAC_Pajol' -O -
+					</code></pre>
+					<ul class="fragment">
+						<li>curl supporte (beaucoup) plus de protocoles</li>
+						<li>wget supporte les téléchargement récursifs</li>
+						<li class="fragment">Même nombre de caractères…<ul>
+							<li class="fragment">… mais on peut taper <kbd>wget</kbd> avec juste la main gauche ;-)</li>
+						</ul></li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Les dumps</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:Building_Fairs_Brno_2011_(082).jpg"><img src="images/Building_Fairs_Brno_2011_(082).jpg" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">© Pavel Ševela, CC-BY-SA 3.0</small>
+					</p>
+					<ul>
+						<li><a href="https://dumps.wikimedia.org/">dumps.wikimedia.org</a></li>
+						<li class="fragment"><a href="https://dumps.wikimedia.org/frwiki/latest">dumps.wikimedia.org/frwiki/latest</a><ul>
+							<li class="fragment"><i>pages-meta-history</i> : toutes les pages + historiques<ul>
+								<li class="fragment">plusieurs Tio pour enwiki !</li>
+							</ul></li>
+							<li class="fragment"><i>pages-meta-current</i> : toutes les pages, sans l'historique</li>
+							<li class="fragment"><strong><i>pages-articles</i></strong> : articles + modèles, sans l'historique<ul>
+								<li class="fragment">~ 15 Gio pour frwiki ; ~ 50 Gio pour enwiki</li>
+							</ul></li>
+							<li class="fragment"><i>stub-meta-history</i> : seulement les métadonnées + historiques</li>
+							<li class="fragment"><i>all-titles</i> : seulement les titres</li>
+							<li class="fragment"><i>*.rss</i> : pour être prévenu des mises à jour</li>
+						</ul></li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>Les dumps</h2>
+					<pre><code>
+$ wget 'https://dumps.wikimedia.org/frwiki/latest/frwiki-latest-pages-articles.xml.bz2' -O - | \
+  bunzip2 > frwiki.xml
+					</code></pre>
+					<ul class="fragment">
+						<li>Et pour du texte brut ?<ul>
+							<li class="fragment"><a href="https://github.com/attardi/wikiextractor">WikiExtractor</a></li>
+							<li class="fragment"><a href="https://dumps.wikimedia.org/other/cirrussearch/">dumps.wikimedia.org/other/cirrussearch/</a></li>
+						</ul></li>
+					</ul>
+					<pre class="fragment"><code>
+$ wget 'https://dumps.wikimedia.org/other/cirrussearch/current/frwiki-20160815-cirrussearch-content.json.gz' -O - | \
+  gunzip > frwiki.json
+					</code></pre>
+					<pre class="fragment"><code>
+$ < frwiki.json | jq '.source_text | select(. != null)'
+					</code></pre>
+					<pre class="fragment"><code>
+$ < frwiki.json | jq -r '.text | select(. != null)'
 					</code></pre>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
-				<!-- TODO FIXME slide sur raw -->
-				<!-- TODO FIXME slide sur section -->
-				<!-- TODO FIXME slide sur Spécial:Export -->
-				<!-- TODO FIXME slide sur curl / wget -->
-				<!-- TODO FIXME slide sur les dumps, dl d'un petit dump de wp -->
-				<!-- TODO FIXME slide sur cyrrussearch -->
+				<!-- TODO FIXME slide sur jq -->
 				<section>
 					<h2>Synonymes : CRISCO DES</h2>
 					<p>
@@ -126,7 +206,6 @@ $ less wolf-1.0b4.xml
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
-				<!-- TODO FIXME slide sur bunzip / gunzip -->
 				<!-- TODO FIXME slide sur XSLT / xmlstarlet -->
 				<section>
 					<h2>Synonymes : WOLF</h2>
@@ -522,7 +601,7 @@ relations 61562
 						</ul></li>
 					</ul>
 					<pre class="fragment"><code>
-$ curl 'https://fr.wiktionary.org/w/api.php?action=query&list=allusers&auwitheditsonly=true&format=json'
+$ curl 'https://fr.wiktionary.org/w/api.php?action=query&amp;list=allusers&amp;auwitheditsonly=true&amp;format=json'
 					</code></pre>
 					<pre class="fragment"><code>
 $ http 'https://fr.wiktionary.org/w/api.php' \
@@ -535,7 +614,6 @@ $ http 'https://fr.wiktionary.org/w/api.php' \
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
-				<!-- TODO FIXME slide sur jq -->
 				<section>
 					<h2>Statistiques : API</h2>
 					<pre style="height:80%"><code style="height:100%; max-height: 100%">
@@ -551,7 +629,7 @@ $ from=''
       aulimit==500 \
       format==json)
     from=$(echo $users | jq -r '.continue.aufrom')
-    [[ $from = null ]] && break
+    [[ $from = null ]] &amp;&amp; break
     count=$((count + 500))
   done
   count=$((count + $(echo $users | jq '.query.allusers | length')))
@@ -577,7 +655,7 @@ $ time (
       aulimit==500 \
       format==json)
     from=$(echo $users | jq -r '.continue.aufrom')
-    [[ $from = null ]] && break
+    [[ $from = null ]] &amp;&amp; break
     count=$((count + 500))
   done
   count=$((count + $(echo $users | jq '.query.allusers | length')))
@@ -604,7 +682,7 @@ $ time (
       aulimit==500 \
       format==json)
     from=$(echo $users | jq -r '.continue.aufrom')
-    [[ $from = null ]] && break
+    [[ $from = null ]] &amp;&amp; break
     count=$((count + 500))
   done
   count=$((count + $(echo $users | jq '.query.allusers | length')))
@@ -688,6 +766,9 @@ MariaDB [frwiktionary_p]> SELECT COUNT(*) FROM user WHERE user_editcount > 0;
 					<ul class="fragment">
 						<li>Conclusion 1 : on peut aller plus vite</li>
 						<li class="fragment">Conclusion 2 : choisir le bon outil :)</li>
+						<li class="fragment">Malheureusement, on n'a pas toujours le choix…<ul>
+							<li class="fragment"><a href="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Prise_de_d%C3%A9cision/Crit%C3%A8res_d%27admissibilit%C3%A9_des_footballeurs">[[Wikipédia:Prise_de_décision/Critères_d'admissibilité_des_footballeurs]]</a></li>
+						</ul></li>
 					</ul>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
@@ -706,7 +787,10 @@ MariaDB [frwiktionary_p]> SELECT COUNT(*) FROM user WHERE user_editcount > 0;
 				</section>
 				<section>
 					<h2>Réplicats des bases de données (Tool Labs)</h2>
-					<pre><code>
+					<ul>
+						<li>Nombre de contributions dans un espace de nom donné</li>
+					</ul>
+					<pre class="fragment"><code>
 SELECT page_title, COUNT(*)
   FROM revision_userindex
 JOIN page
@@ -719,27 +803,66 @@ GROUP BY page_title
 ORDER BY COUNT(*) DESC
 LIMIT 30;
 					</code></pre>
-					<ul>
-						<li>$POINT</li>
-					</ul>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
 				<section>
-					<h2>Aller plus loin (mais pas trop)</h2>
+					<h2>DBpedia</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:DBpediaLogo.svg"><img src="images/2000px-DBpediaLogo.svg.png" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">$AUTEUR</small>
+					</p>
 					<ul>
-						<li><a href="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Prise_de_d%C3%A9cision/Crit%C3%A8res_d%27admissibilit%C3%A9_des_footballeurs">[[Wikipédia:Prise_de_décision/Critères_d'admissibilité_des_footballeurs]]</a></li>
-						<li class="fragment">Changer d'approche !</li>
-						<li class="fragment">Wikidata, etc.</li>
+						<li><a href="http://fr.dbpedia.org/">fr.dbpedia.org</a></li>
+						<li class="fragment"><a href="http://fr.dbpedia.org/dumps.html">fr.dbpedia.org/dumps.html</a></li>
+						<li class="fragment"><a href="http://fr.dbpedia.org/sparqlEditor/index.html">fr.dbpedia.org/sparqlEditor</a></li>
 					</ul>
+					<pre class="fragment"><code>
+PREFIX db-owl: &lt;http://dbpedia.org/ontology/>
+
+SELECT * WHERE {
+  ?ville db-owl:region &lt;http://fr.dbpedia.org/resource/Île-de-France> .
+  ?ville rdf:type db-owl:Settlement .
+  ?ville db-owl:populationTotal ?population .
+  FILTER (?population > 100000)
+}
+					</code></pre>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
-				<!-- TODO FIXME slide sur dbpedia -->
-				<!-- TODO FIXME sur Wikidata -->
-				<!-- TODO FIXME slide sur sparql -->
+				<section>
+					<h2>Wikidata</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:Wikidata-logo-en.svg"><img src="images/2000px-Wikidata-logo-en.svg.png" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">$AUTEUR</small>
+					</p>
+					<ul>
+						<li><a href="https://query.wikidata.org/">query.wikidata.org</a></li>
+					</ul>
+					<pre class="fragment"><code>
+PREFIX wd: &lt;http://www.wikidata.org/entity/>
+PREFIX wdt: &lt;http://www.wikidata.org/prop/direct/>
+
+SELECT ?pays WHERE {
+  wd:Q90 wdt:P1376 ?pays
+}
+					</code></pre>
+					<pre class="fragment"><code>
+SELECT ?eyeColorLabel (COUNT(?person) AS ?count)
+WHERE {
+  ?person wdt:P1340 ?eyeColor
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "fr" }
+}
+GROUP BY ?eyeColorLabel
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
 				<!-- TODO FIXME demo drapeaux -->
 				<section>
 					<h2>$TITRE</h2>
@@ -758,9 +881,9 @@ LIMIT 30;
 				<section>
 					<h2>~~~~</h2>
 					<p>
-						<a href="https://commons.wikimedia.org/wiki/File:Table_du_Gros_Souper.JPG"><img src="images/Table_du_Gros_Souper.JPG" style="width: 500.0px;"></a>
+						<a href="https://commons.wikimedia.org/wiki/File:WMF_office_shots_April_2016-12.jpg"><img src="images/WMF_office_shots_April_2016-12.jpg" style="width: 500.0px;"></a>
 						<br>
-						<small style="font-size: 40%">c̶ Véronique Pagnier, CC-0</small>
+						<small style="font-size: 40%">© Victor Grigas, CC-BY-SA 3.0</small>
 					</p>
 					<ul>
 						<li><a href="http://fr.wikipedia.org/wiki/User_talk:Arkanosis">frwp.org/User:Arkanosis</a></li>

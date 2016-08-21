@@ -162,6 +162,11 @@ $ < frwiki.json | jq '.source_text | select(. != null)'
 					<pre class="fragment"><code>
 $ < frwiki.json | jq -r '.text | select(. != null)'
 					</code></pre>
+					<pre class="fragment"><code>
+$ wget 'https://dumps.wikimedia.org/other/cirrussearch/current/frwiki-20160815-cirrussearch-content.json.gz' -O - | \
+  gunzip | \
+  jq -r '.text | select(. != null)'
+					</code></pre>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
@@ -337,7 +342,11 @@ $ seq 10 | datamash sum 1 mean 1
 55 5.5
 					</code></pre>
 					<pre class="fragment"><code>
-$ ( echo a a ; echo b b ; echo c c) | awk '/b/ { $1 = "A" } { print }'
+$ datamash -s -g 13 count 2 < genes.txt
+ABCC1   1
+ABCC10  2
+ABCC11  3
+…
 					</code></pre>
 					<pre class="fragment"><code>
 $ datamash -H mean 1 q1 1 median 1 q3 1 iqr 1 sstdev 1 jarque 1 < FILE.TXT

@@ -733,6 +733,26 @@ relations 61562
 					<pre class="fragment"><code>
 $ curl 'https://fr.wiktionary.org/w/api.php?action=query&amp;list=allusers&amp;auwitheditsonly=true&amp;format=json'
 					</code></pre>
+					<ul class="fragment">
+						<li>Ouch…</li>
+					</ul>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>HTTPie</h2>
+					<p>
+						<a href="https://github.com/jkbrzt/httpie"><img src="images/httpie.jpg" style="width: 15%;"></a>
+						<br>
+						<small style="font-size: 40%">© Scott Leberknight, BSD</small>
+					</p>
+					<ul>
+						<li>alternative à curl, wget<span class="fragment">, aria2, axel…</span></li>
+					</ul>
+					<pre class="fragment"><code>
+$ curl 'https://fr.wiktionary.org/w/api.php?action=query&amp;list=allusers&amp;auwitheditsonly=true&amp;format=json'
+					</code></pre>
 					<pre class="fragment"><code>
 $ http 'https://fr.wiktionary.org/w/api.php' \
   action==query \
@@ -740,6 +760,11 @@ $ http 'https://fr.wiktionary.org/w/api.php' \
   auwitheditsonly==true \
   format==json
 					</code></pre>
+					<ul class="fragment">
+						<li>requêtes plus faciles à écrire</li>
+						<li class="fragment">réponses plus faciles à lire</li>
+						<li class="fragment">… à part ça, très similaire</li>
+					</ul>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>

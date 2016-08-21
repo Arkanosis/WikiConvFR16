@@ -166,7 +166,32 @@ $ < frwiki.json | jq -r '.text | select(. != null)'
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
-				<!-- TODO FIXME slide sur jq -->
+				<section>
+					<h2>jq</h2>
+					<p>
+						<a href="https://stedolan.github.io/jq/"><img src="images/jq.png" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">© Stephen Dolan, CC-BY 3.0</small>
+					</p>
+					<ul>
+						<li>Filtrer, extraire, formater du JSON</li>
+					</ul>
+					<pre class="fragment"><code>
+jq '.'
+					</code></pre>
+					<pre class="fragment"><code>
+jq '.[0]'
+					</code></pre>
+					<pre class="fragment"><code>
+jq '.[] | { nom: .personne.nom, role: .role.nom }'
+					</code></pre>
+					<pre class="fragment"><code>
+jq '.[] | length'
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
 				<section>
 					<h2>Synonymes : CRISCO DES</h2>
 					<p>
@@ -206,7 +231,36 @@ $ less wolf-1.0b4.xml
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
-				<!-- TODO FIXME slide sur XSLT / xmlstarlet -->
+				<section>
+					<h2>XMLStarlet</h2>
+					<p>
+						<a href="http://xmlstar.sourceforge.net/"><img src="images/xmlstarlet.png" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">© Mikhail Grushinskiy, MIT</small>
+					</p>
+					<ul>
+						<li>Filtrer, extraire, formater du XML<ul class="fragment">
+							<li>avec XPATH et XSLT<ul class="fragment">
+								<li>mais sans XSLT</li>
+							</ul></li>
+						</ul></li>
+					</ul>
+					<pre class="fragment"><code>
+xml sel -t -c root
+					</code></pre>
+					<pre class="fragment"><code>
+xml sel -t -m '//foo' -v 'bar'
+					</code></pre>
+					<pre class="fragment"><code>
+xml sel -t -m '//foo[@name!="bad"]' -v 'bar' -o " -> " -v 'baz'
+					</code></pre>
+					<pre class="fragment"><code>
+xml sel -t -v 'cout(/)'
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
 				<section>
 					<h2>Synonymes : WOLF</h2>
 					<pre><code>
@@ -243,13 +297,57 @@ $ < counts.lst
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
-				<!-- TODO FIXME slide sur sed / awk -->
-				<!--
-( echo a a ; echo b b ; echo c c) | sed '2d'
-( echo a a ; echo b b ; echo c c) | awk 'NR != 2'
-( echo a a ; echo b b ; echo c c) | awk '/b/ { $1 = "A" } { print }'
-				-->
-				<!-- TODO FIXME slide sur datamash -->
+				<section>
+					<h2>sed / awk</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:LorisLyd1.png"><img src="images/LorisLyd1.png" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">c̶ Richard Lydekker, DP</small>
+					</p>
+					<ul>
+						<li>Filtrer, extraire, formater du texte</li>
+					</ul>
+					<pre class="fragment"><code>
+$ ( echo a a ; echo b b ; echo c c) | sed '2d'
+$ ( echo a a ; echo b b ; echo c c) | awk 'NR != 2'
+					</code></pre>
+					<pre class="fragment"><code>
+$ ( echo a a ; echo b b ; echo c c) | awk '/b/ { $1 = "A" } { print }'
+					</code></pre>
+					<pre class="fragment"><code>
+$ echo "Hello toto" | sed 's/o/a/'
+$ echo "Hello toto" | sed 's/o/a/g'
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
+				<section>
+					<h2>datamash</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:Paul_charts_2003.gif"><img src="images/Paul_charts_2003.gif" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">© Lorillou, CC-BY-SA 2.5</small>
+					</p>
+					<ul>
+						<li>Calculs statistiques rapides</li>
+					</ul>
+					<pre class="fragment"><code>
+$ seq 10 | datamash sum 1 mean 1
+55 5.5
+					</code></pre>
+					<pre class="fragment"><code>
+$ ( echo a a ; echo b b ; echo c c) | awk '/b/ { $1 = "A" } { print }'
+					</code></pre>
+					<pre class="fragment"><code>
+$ datamash -H mean 1 q1 1 median 1 q3 1 iqr 1 sstdev 1 jarque 1 < FILE.TXT
+mean(x)   q1(x)  median(x)  q3(x)   iqr(x)  sstdev(x)  jarque(x)
+45.32     23     37         61.5    38.5    30.4487    8.0113e-09
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
 				<section>
 					<h2>Synonymes : WOLF</h2>
 					<blockquote cite="https://fr.wikipedia.org/wiki/Combinaison_(math%C3%A9matiques)" style="font-size: 90%; width: 90%">
@@ -281,7 +379,6 @@ $ < counts.lst
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
-				<!-- TODO FIXME slide sur Python / Ruby / Lua / R -->
 				<section>
 					<h2>Synonymes : Wiktionnaire</h2>
 					<p>
@@ -306,7 +403,31 @@ $ grep synonymes --color=always --after-context=15 frwikt-20160804.xml | head -n
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
-				<!-- TODO FIXME slide sur grep -->
+				<section>
+					<h2>grep</h2>
+					<p>
+						<a href="https://commons.wikimedia.org/wiki/File:Red-eyed_Treefrog_(Agalychnis_callidryas).jpg"><img src="images/Red-eyed_Treefrog_(Agalychnis_callidryas).jpg" style="width: 20%;"></a>
+						<br>
+						<small style="font-size: 40%">© Brian Gratwicke, CC-BY 2.0</small>
+					</p>
+					<ul>
+						<li>Filtrer du texte</li>
+					</ul>
+					<pre class="fragment"><code>
+$ echo foo | grep fo
+$ echo foo | grep -v fo
+					</code></pre>
+					<pre class="fragment"><code>
+$ echo wikimedia | grep wiki --color=always
+					</code></pre>
+					<pre class="fragment"><code>
+grep hello --after-context=21
+grep by --before-context=42
+					</code></pre>
+					<p>
+						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
+					</p>
+				</section>
 				<section>
 					<h2>Synonymes : Wiktionnaire</h2>
 					<pre style="height:80%"><code style="height:100%; max-height: 100%">
@@ -446,7 +567,7 @@ if __name__ == '__main__':
 				</section>
 				<section>
 					<h2>Synonymes : Wiktionnaire</h2>
-					<pre style="height:80%"><code style="height:100%; max-height: 100%">
+					<pre style="height:80%"><code style="height:100%; max-height: 100%" data-noescape>
 #! /usr/bin/env python3
 
 import re
@@ -458,8 +579,8 @@ _synonyms = re.compile(r'=+\s*\{\{S\|synonymes\}\}\s*=+')
 _title = re.compile(r'^=+\s*=+')
 _word = re.compile(r'^\*\s*\[\[(.+?\|)?(?P&lt;word>.+?)\]\]')
 
-words = set()
-relations = set()
+<mark>words = set()
+relations = set()</mark>
 
 def processPage(page):
 
@@ -478,9 +599,9 @@ def processPage(page):
                 keepWords = False
 
             if keepWords and lang == 'fr' and on(_word):
-                words.add(page.title)
+                <mark>words.add(page.title)
                 words.add(_('word'))
-                relations.add(tuple(sorted([page.title, _('word')])))
+                relations.add(tuple(sorted([page.title, _('word')])))</mark>
 
 if __name__ == '__main__':
 
@@ -490,8 +611,8 @@ if __name__ == '__main__':
 
     wikidump.parseWithCallback(sys.argv[1], processPage)
 
-    print('words', len(words))
-    print('relations', len(relations))
+    <mark>print('words', len(words))
+    print('relations', len(relations))</mark>
 					</code></pre>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
@@ -812,7 +933,7 @@ LIMIT 30;
 					<p>
 						<a href="https://commons.wikimedia.org/wiki/File:DBpediaLogo.svg"><img src="images/2000px-DBpediaLogo.svg.png" style="width: 20%;"></a>
 						<br>
-						<small style="font-size: 40%">$AUTEUR</small>
+						<small style="font-size: 40%">c̶ The DBpedia Team, DP</small>
 					</p>
 					<ul>
 						<li><a href="http://fr.dbpedia.org/">fr.dbpedia.org</a></li>
@@ -838,7 +959,7 @@ SELECT * WHERE {
 					<p>
 						<a href="https://commons.wikimedia.org/wiki/File:Wikidata-logo-en.svg"><img src="images/2000px-Wikidata-logo-en.svg.png" style="width: 20%;"></a>
 						<br>
-						<small style="font-size: 40%">$AUTEUR</small>
+						<small style="font-size: 40%">c̶ Planemad, DP</small>
 					</p>
 					<ul>
 						<li><a href="https://query.wikidata.org/">query.wikidata.org</a></li>
@@ -863,17 +984,29 @@ GROUP BY ?eyeColorLabel
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>
 				</section>
-				<!-- TODO FIXME demo drapeaux -->
 				<section>
-					<h2>$TITRE</h2>
+					<h2>Service rapide</h2>
 					<p>
-						<a href="$URL"><img src="images/$IMG" style="width: 20%;"></a>
+						<a href="https://commons.wikimedia.org/wiki/File:2013_Australian_Open_-_Guillaume_Rufin.jpg"><img src="images/2013_Australian_Open_-_Guillaume_Rufin.jpg" style="width: 15%;"></a>
 						<br>
-						<small style="font-size: 40%">$AUTEUR</small>
+						<small style="font-size: 40%">© Brendan Dennis, CC-BY-SA 3.0</small>
 					</p>
 					<ul>
-						<li>$POINT</li>
+						<li><a href="https://www.google.fr/search?q=country+phone+code">google://country+phone+code</a></li>
 					</ul>
+					<pre class="fragment"><code>
+SELECT ?countryLabel ?itu ?iso2 ?iso3 ?pop ?sup ?gdp
+WHERE {
+  ?country wdt:P474 ?itu ;
+           wdt:P297 ?iso2 ;
+           wdt:P298 ?iso3 ;
+           wdt:P1082 ?pop ;
+           wdt:P2046 ?sup ;
+           wdt:P2131 ?gdp .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "fr" }
+}
+ORDER BY ASC(?countryLabel)
+					</code></pre>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>
 					</p>

@@ -1,5 +1,15 @@
 # WikiConvFR16
 
+## Checklist
+- Vérifier le wifi
+- Se connecter avec le bon compte
+- Brancher l'écran
+- xrandr
+- Brancher la souris
+- Brancher le pointeur
+- PENSER A DESACTIVER L'ECRAN DE VEILLE !!! killall xautolock
+
+
 ## Matériel
 * Portable marvin
 * Portable taz (backup)

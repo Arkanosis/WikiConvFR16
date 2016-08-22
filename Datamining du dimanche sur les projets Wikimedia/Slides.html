@@ -157,10 +157,10 @@ $ wget 'https://dumps.wikimedia.org/other/cirrussearch/current/frwiki-20160815-c
   gunzip > frwiki.json
 					</code></pre>
 					<pre class="fragment"><code>
-$ < frwiki.json | jq '.source_text | select(. != null)'
+$ < frwiki.json jq '.source_text | select(. != null)'
 					</code></pre>
 					<pre class="fragment"><code>
-$ < frwiki.json | jq -r '.text | select(. != null)'
+$ < frwiki.json jq -r '.text | select(. != null)'
 					</code></pre>
 					<pre class="fragment"><code>
 $ wget 'https://dumps.wikimedia.org/other/cirrussearch/current/frwiki-20160815-cirrussearch-content.json.gz' -O - | \
@@ -342,14 +342,14 @@ $ seq 10 | datamash sum 1 mean 1
 55 5.5
 					</code></pre>
 					<pre class="fragment"><code>
-$ datamash -s -g 13 count 2 < genes.txt
+$ < genes.txt datamash -s -g 13 count 2
 ABCC1   1
 ABCC10  2
 ABCC11  3
 …
 					</code></pre>
 					<pre class="fragment"><code>
-$ datamash -H mean 1 q1 1 median 1 q3 1 iqr 1 sstdev 1 jarque 1 < FILE.TXT
+$ < values.txt datamash -H mean 1 q1 1 median 1 q3 1 iqr 1 sstdev 1 jarque 1
 mean(x)   q1(x)  median(x)  q3(x)   iqr(x)  sstdev(x)  jarque(x)
 45.32     23     37         61.5    38.5    30.4487    8.0113e-09
 					</code></pre>
@@ -423,15 +423,15 @@ $ grep synonymes --color=always --after-context=15 frwikt-20160804.xml | head -n
 						<li>Filtrer du texte</li>
 					</ul>
 					<pre class="fragment"><code>
-$ echo foo | grep fo
-$ echo foo | grep -v fo
+$ ( echo wikipedia ; echo encarta ) | grep wiki
+$ ( echo wikipedia ; echo encarta ) | grep -v wiki
 					</code></pre>
 					<pre class="fragment"><code>
-$ echo wikimedia | grep wiki --color=always
+$ echo maisoùestcharlie | grep charlie --color=always
 					</code></pre>
 					<pre class="fragment"><code>
 grep hello --after-context=21
-grep by --before-context=42
+grep bye --before-context=42
 					</code></pre>
 					<p>
 						<small style="font-size: 50%" class="caption">© <a href="http://fr.wikipedia.org/wiki/User:Arkanosis"><span style="color:gray">User:</span>Arkanosis</a> — CC-BY 4.0 — WikiConvention francophone 2016</small>

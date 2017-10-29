@@ -1,5 +1,13 @@
 # WikiConvFR16
 
+Ce dépôt contient les slides de deux de mes trois interventions lors de la WikiConvention francophone 2016.
+La troisième intervention (« Devenez développeur (en 4 h montre en main) ») était plus un atelier qu'une conférence ; il n'y a donc pas de slides.
+
+## Versions en ligne
+
+* [Astuces techniques pour Wikipédia](https://arkanosis.fr/wikipedia/WikiConvFR16/Astuces%20techniques%20pour%20Wikip%c3%a9dia/Slides.html)
+* [Datamining du dimanche sur les projets Wikimedia](https://arkanosis.fr/wikipedia/WikiConvFR16/Datamining%20du%20dimanche%20sur%20les%20projets%20Wikimedia/Slides.html)
+
 ## Checklist
 - Vérifier le wifi
 - Se connecter avec le bon compte
